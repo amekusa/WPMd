@@ -18,11 +18,18 @@ class App extends Plugin {
 	const // Menus
 		MENU_MAIN = 'wpmd-menu-main',
 		MENU_OPTIONS = 'wpmd-menu-opt';
+	
+	protected $parser;
 
 	protected function __construct() {
-
-		// Common initialization
+		$this->parser = new \Parsedown();
+		
 		Action::create('init', function () {
-		});
+			Filter::create('the_content', array ($this, 'parse'))->setPriority(9)->register();
+		})->register();
+	}
+	
+	public function parse($Markdown) {
+		return $this->parser->text($Markdown);
 	}
 }
