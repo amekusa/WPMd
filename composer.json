@@ -1,0 +1,24 @@
+{
+	"name": "amekusa/wpmd",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "amekusa",
+			"email": "hello@amekusa.com"
+		}
+	],
+	"require": {
+		"amekusa/wpelib": "*",
+		"amekusa/plz": "*",
+		"erusev/parsedown": "^1.6"
+	},
+	"repositories": [{
+		"type": "vcs",
+		"url": "https://github.com/amekusa/WPELib.git"
+	}],
+	"autoload": {
+		"psr-4": {
+			"amekusa\\wpmd\\": "src"
+		}
+	}
+}
