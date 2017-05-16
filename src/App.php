@@ -22,14 +22,17 @@ class App extends Plugin {
 	protected $parser;
 
 	protected function __construct() {
-		$this->parser = new \Parsedown();
-		
 		Action::create('init', function () {
 			Filter::create('the_content', array ($this, 'parse'))->setPriority(9)->register();
 		})->register();
 	}
 	
-	public function parse($Markdown) {
+	protected function initParser() {
+		$this->parser = new \Parsedown();
+	}
+
+	function parse($Markdown) {
+		if (!$this->parser) $this->initParser();
 		return $this->parser->text($Markdown);
 	}
 }
